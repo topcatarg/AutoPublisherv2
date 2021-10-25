@@ -16,15 +16,15 @@
     <PackageReference Include="EAGetMail" Version="5.2.2.2" />
     <PackageReference Include="MahApps.Metro" Version="2.4.9" />
     <PackageReference Include="MahApps.Metro.IconPacks" Version="4.11.0" />
-    <PackageReference Include="Microsoft.Data.Sqlite.Core" Version="5.0.11" />
+    <PackageReference Include="Microsoft.Data.Sqlite" Version="5.0.11" />
     <PackageReference Include="SharpClipboard" Version="3.5.2" />
     <PackageReference Include="WordPressPCL" Version="1.9.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="image.png">
+    <SplashScreen Include="image.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
+    </SplashScreen>
   </ItemGroup>
 
   <ItemGroup>
