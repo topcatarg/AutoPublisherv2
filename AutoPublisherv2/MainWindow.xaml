@@ -18,5 +18,34 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
+        <mah:MetroAnimatedSingleRowTabControl
+            Grid.Row="0"
+            x:Name="TabControl" IsEnabled="{Binding Enabled, Mode=OneWay, ValidatesOnNotifyDataErrors=False}" >
+            <TabItem Header="Publicación" >
+                
+            </TabItem>
+            <TabItem Header="Publicar" >
+                
+                <!--<Views:Publish x:Name="PublishView"/>-->
+            </TabItem>
+            <TabItem Header="Configurar" >
+                
+                <!--<Views:Config x:Name="ConfigView"/>-->
+            </TabItem>
+
+
+
+        </mah:MetroAnimatedSingleRowTabControl>
+        <mah:ProgressRing 
+                    x:Name="ProgressControl"
+                    Width="200" 
+            Visibility="{Binding Working}"
+                    />
+        <StatusBar Grid.Row="1" x:Name="AppStatusBar">
+            <StatusBarItem Content="Publicador automático a Wordpress 2.0"/>
+            <Separator Style="{StaticResource MahApps.Styles.Separator.StatusBar}" />
+            <StatusBarItem Content="Estado actual:"/>
+            <StatusBarItem Content="{Binding Footer, Mode=OneWay, ValidatesOnNotifyDataErrors=False}" />
+        </StatusBar>
     </Grid>
 </mah:MetroWindow>

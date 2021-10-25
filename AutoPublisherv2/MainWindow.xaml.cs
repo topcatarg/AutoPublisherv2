@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using MahApps.Metro.Controls;
+using AutoPublisherv2.ViewModels;
 
 namespace AutoPublisherv2
 {
@@ -21,14 +22,18 @@ namespace AutoPublisherv2
     /// </summary>
     public partial class MainWindow : MetroWindow
     {
+        private readonly MainWindowsVM ThisVM = new();
         public MainWindow()
         {
             InitializeComponent();
+            DataContext = ThisVM;
         }
 
-        private void MetroWindow_Loaded(object sender, RoutedEventArgs e)
+        private async void MetroWindow_Loaded(object sender, RoutedEventArgs e)
         {
-
+            await ThisVM.CheckDatabase();
+            ThisVM.Enabled = true;
+            ThisVM.Working = Visibility.Hidden;
         }
     }
 }
