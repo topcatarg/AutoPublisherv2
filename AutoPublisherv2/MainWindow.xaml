@@ -1,4 +1,4 @@
-﻿<mah:MetroWindow x:Class="AutoPublisherv2.MainWindow"
+﻿<mah:MetroWindow xmlns:Views="clr-namespace:AutoPublisherv2.Views"  x:Class="AutoPublisherv2.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -29,8 +29,12 @@
                 <!--<Views:Publish x:Name="PublishView"/>-->
             </TabItem>
             <TabItem Header="Configurar" >
+
+                <Views:ConfigView />
+            </TabItem>
+            <TabItem Header="Herramientas" >
+
                 
-                <!--<Views:Config x:Name="ConfigView"/>-->
             </TabItem>
 
 

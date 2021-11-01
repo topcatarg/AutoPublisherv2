@@ -17,6 +17,7 @@
     <PackageReference Include="MahApps.Metro" Version="2.4.9" />
     <PackageReference Include="MahApps.Metro.IconPacks" Version="4.11.0" />
     <PackageReference Include="Microsoft.Data.Sqlite" Version="5.0.11" />
+    <PackageReference Include="Microsoft.Data.Sqlite.Core" Version="5.0.11" />
     <PackageReference Include="SharpClipboard" Version="3.5.2" />
     <PackageReference Include="WordPressPCL" Version="1.9.0" />
   </ItemGroup>
@@ -31,6 +32,10 @@
     <None Update="base.db">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Converters\" />
   </ItemGroup>
 
 </Project>
