@@ -17,7 +17,7 @@ namespace AutoPublisherv2.Services
         public Action SiteRefreshed;
         private static SiteServices ThisInstance;
         public Lazy<Task<ImmutableList<Site>>> SiteList;
-
+        
         private SiteServices()
         {
             AssingSiteList();

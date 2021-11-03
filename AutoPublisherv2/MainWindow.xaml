@@ -22,19 +22,20 @@
             Grid.Row="0"
             x:Name="TabControl" IsEnabled="{Binding Enabled, Mode=OneWay, ValidatesOnNotifyDataErrors=False}" >
             <TabItem Header="Publicación" >
-                
+
             </TabItem>
+            <TabItem Header="Correo"/>
             <TabItem Header="Publicar" >
-                
+                <Views:PublishView/>
                 <!--<Views:Publish x:Name="PublishView"/>-->
+            </TabItem>
+            <TabItem Header="Herramientas" >
+
+
             </TabItem>
             <TabItem Header="Configurar" >
 
                 <Views:ConfigView />
-            </TabItem>
-            <TabItem Header="Herramientas" >
-
-                
             </TabItem>
 
 
