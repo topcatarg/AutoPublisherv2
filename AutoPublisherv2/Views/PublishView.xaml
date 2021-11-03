@@ -5,15 +5,14 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:AutoPublisherv2.Views"
              mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800"
              xmlns:mah="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
-             xmlns:converters="clr-namespace:AutoPublisherWP.Converters"
-             d:DesignHeight="450" d:DesignWidth="800">
+             xmlns:converters="clr-namespace:AutoPublisherv2.Converters" 
+             xmlns:Models="clr-namespace:AutoPublisherv2.Models" xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks" Initialized="UserControl_Initialized">
     <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
         <converters:IconToKindConverter x:Key="IconConvert"/>
     </UserControl.Resources>
-    <UserControl.DataContext>
-        <Models:SiteList/>
-    </UserControl.DataContext>
     <Grid x:Name="GrillaPrincipal">
         <Grid.RowDefinitions>
             <RowDefinition/>
@@ -22,7 +21,6 @@
         <Grid x:Name="GrillaSitios">
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition/>
                     <RowDefinition/>
                     <RowDefinition/>
                     <RowDefinition/>
@@ -104,28 +102,25 @@
                         Grid.Column="1" 
                         Margin="5,5" 
                         Grid.Row="1" Click="BtnUncheckAll_Click" />
-                <Button x:Name="BtnGetPostList" Content="Bajar lista" 
+                <Button x:Name="BtnPublish"
+                    Content="Publicar" 
                         Grid.Column="1" 
-                        Margin="5,5" 
-                        Grid.Row="2" Click="BtnGetPostList_Click" />
+                        Margin="5,5"
+                        Grid.Row="2" 
+                        Click="BtnPublish_Click"
+                        />
                 <Button x:Name="BtnTest" 
                     Content="Testear sitios"
                         Grid.Column="1"
                         Margin="5,5"
                         Grid.Row="3" Click="BtnTest_Click"/>
-                <Button x:Name="BtnPublish"
-                    Content="Publicar" 
-                        Grid.Column="1" 
-                        Margin="5,5"
-                        Grid.Row="4" 
-                        Click="BtnPublish_Click"
-                        />
 
 
             </Grid>
             <mah:ProgressRing 
                     x:Name="ProgressControl"
                     Width="200" 
+                Visibility="{Binding ProgressControl, Converter={StaticResource BooleanToVisibilityConverter}}"
                     />
         </Grid>
         <StackPanel Grid.Row="1" Orientation="Horizontal">
