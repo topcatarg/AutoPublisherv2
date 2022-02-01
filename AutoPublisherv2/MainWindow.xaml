@@ -30,7 +30,7 @@
                 <!--<Views:Publish x:Name="PublishView"/>-->
             </TabItem>
             <TabItem Header="Herramientas" >
-
+                <Views:Tools/>
 
             </TabItem>
             <TabItem Header="Configurar" >
