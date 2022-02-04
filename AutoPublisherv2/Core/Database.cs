@@ -10,10 +10,13 @@ using AutoPublisherv2.Services;
 
 namespace AutoPublisherv2.Core
 {
-    class Database
+    public class Database
     {
         public static readonly string dbpath = Path.Combine(AppContext.BaseDirectory, "wpauto.db");
 
+        public readonly int ActualVersion = 1;
+
+        private int DatabaseVersion = -1;
         #region Constructor
         public Database()
         {
@@ -21,34 +24,21 @@ namespace AutoPublisherv2.Core
         }
         #endregion
 
-        public async Task<string> CheckDatabase()
+        public async Task<bool> IsUpToDateAsync()
         {
-            DatabaseConnection dbConnection = new DatabaseConnection();
-            await CheckIfExistsAsync();
-            using SqliteConnection db = dbConnection.GetOpenDBConnection();
-            int version = await db.QueryFirstOrDefaultAsync<int>(
+            DatabaseConnection Con = new();
+            using SqliteConnection db = Con.GetOpenDBConnection();
+            DatabaseVersion = await db.QueryFirstOrDefaultAsync<int>(
 @"select *
 from version");
-            if (version == 0)
-            {
-                _ = await db.ExecuteAsync(
-@"CREATE TABLE ""sites"" (
-    ""id""    INTEGER,
-	""URL""   TEXT NOT NULL,
-	""User""  TEXT NOT NULL,
-	""Pass""  TEXT NOT NULL,
-	PRIMARY KEY(""id"" AUTOINCREMENT)
-); 
-update version set number = 1;");
-                return "base de datos elevada a version 1";
-            }
-            else
-            {
-                return "base de datos en version 1";
-            }
+            return DatabaseVersion == ActualVersion;
         }
 
-        private async Task CheckIfExistsAsync()
+        /// <summary>
+        /// Check if the file exists. If not, create it
+        /// </summary>
+        /// <returns>nothing</returns>
+        public async Task CheckIfExistsDatabaseFileAsync()
         {
             if (!File.Exists(dbpath))
             {
@@ -58,5 +48,28 @@ update version set number = 1;");
                 await Source.CopyToAsync(Destination);
             }
         }
+
+        public async Task MigrateDatabaseAsync()
+        {
+            DatabaseConnection Conn = new();
+            SqliteConnection db = Conn.GetOpenDBConnection();
+            switch (DatabaseVersion)
+            {
+                case 0:
+                    _ = await db.ExecuteAsync(
+@"CREATE TABLE ""sites"" (
+    ""id""    INTEGER,
+	""URL""   TEXT NOT NULL,
+	""User""  TEXT NOT NULL,
+	""Pass""  TEXT NOT NULL,
+	PRIMARY KEY(""id"" AUTOINCREMENT)
+); 
+update version set number = 1;");
+                    goto case 1;
+                case 1:
+                    break;
+            }
+        }
+
     }
 }

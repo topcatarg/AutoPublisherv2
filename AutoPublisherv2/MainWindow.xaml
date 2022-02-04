@@ -24,7 +24,9 @@
             <TabItem Header="Publicación" >
 
             </TabItem>
-            <TabItem Header="Correo"/>
+            <TabItem Header="Correo">
+                <Views:Mails/>
+            </TabItem>
             <TabItem Header="Publicar" >
                 <Views:PublishView/>
                 <!--<Views:Publish x:Name="PublishView"/>-->

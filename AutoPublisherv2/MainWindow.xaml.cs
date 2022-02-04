@@ -29,9 +29,8 @@ namespace AutoPublisherv2
             DataContext = ThisVM;
         }
 
-        private async void MetroWindow_Loaded(object sender, RoutedEventArgs e)
+        private void MetroWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            await ThisVM.CheckDatabase();
             ThisVM.Enabled = true;
             ThisVM.Working = Visibility.Hidden;
         }

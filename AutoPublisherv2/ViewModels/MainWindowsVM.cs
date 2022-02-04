@@ -47,12 +47,5 @@ namespace AutoPublisherv2.ViewModels
         }
         #endregion
 
-        public async Task CheckDatabase()
-        {
-            Footer = "Chequeando base de datos... ";
-            Database db = new Database();
-            Footer = await db.CheckDatabase();
-        }
-
     }
 }
